@@ -12,6 +12,13 @@
 //
 // Per le versioni Intermedia/Avanzata: localStorage preferiti, debounce, Promise.all multi.
 
+function debounce(func, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 
 // === Classi ===
 
@@ -171,7 +178,7 @@ function creaCardSquadra(squadra, isFavList, isGiaPreferito = false) {
 
   if (isFavList) {
     btn.classList.add('remove');
-    btn.innerHTML = 'Rimuovi';
+    btn.innerHTML = '<i class="bi bi-star-fill"></i> Rimuovi';
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       rimuoviPreferito(squadra.idTeam);
@@ -184,7 +191,7 @@ function creaCardSquadra(squadra, isFavList, isGiaPreferito = false) {
         if(c.dataset.id === squadra.idTeam) {
           const b = c.querySelector('.btn-fav');
           b.className = 'btn-fav add';
-          b.innerHTML = 'Aggiungi ai preferiti';
+          b.innerHTML = '<i class="bi bi-star"></i> Aggiungi ai preferiti';
           b.disabled = false;
         }
       });
@@ -192,16 +199,16 @@ function creaCardSquadra(squadra, isFavList, isGiaPreferito = false) {
   } else {
     if (isGiaPreferito) {
       btn.classList.add('already');
-      btn.innerHTML = 'Già nei preferiti';
+      btn.innerHTML = '<i class="bi bi-star-fill"></i> Già nei preferiti';
       btn.disabled = true;
     } else {
       btn.classList.add('add');
-      btn.innerHTML = 'Aggiungi ai preferiti';
+      btn.innerHTML = '<i class="bi bi-star"></i> Aggiungi ai preferiti';
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         salvaPreferito(squadra);
         btn.className = 'btn-fav already';
-        btn.innerHTML = 'Già nei preferiti';
+        btn.innerHTML = '<i class="bi bi-star-fill"></i> Già nei preferiti';
         btn.disabled = true;
       });
     }
@@ -262,9 +269,21 @@ function creaCardSquadra(squadra, isFavList, isGiaPreferito = false) {
 
 // === Eventi ===
 
+const searchInput = document.getElementById('search-input');
+
+searchInput.addEventListener('input', debounce(async (e) => {
+  const query = e.target.value.trim();
+  if (query.length > 2) {
+    const squadre = await cercaSquadre(query);
+    renderRisultati(squadre);
+  } else if (query.length === 0) {
+    risultatiLista.innerHTML = '<p class="text-muted fst-italic placeholder-text px-2">Inizia cercando una squadra qui sopra.</p>';
+  }
+}, 500));
+
 document.getElementById('search-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const query = document.getElementById('search-input').value.trim();
+  const query = searchInput.value.trim();
   if (query) {
     const squadre = await cercaSquadre(query);
     renderRisultati(squadre);
