@@ -1,0 +1,182 @@
+/* SportsHub — Week Project Settimana VII
+   Reset minimale + tipografia di base. Aggiungi qui le tue regole. */
+
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #f4f6fa;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.site-header {
+  background-color: #193366;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+
+/* Aggiungi qui le tue regole per: form, risultati, card squadra, eventi. */
+
+body {
+  background-color: #f4f6fa !important;
+}
+
+.site-header {
+  background-color: #193366 !important;
+}
+
+.site-header button {
+  color: #193366 !important;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.site-header button:hover {
+  background-color: #fff9c4 !important;
+}
+
+.site-header button:active {
+  transform: scale(0.98);
+}
+
+#loading-spinner .spinner-border {
+  color: #193366 !important;
+}
+
+#error-message {
+  background-color: #ffe5e5 !important;
+  color: #AA0000 !important;
+  border-color: #ffcccc !important;
+}
+
+.team-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.team-badge {
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.team-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.team-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 15px 0;
+}
+
+.btn-fav {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.btn-fav:active {
+  transform: scale(0.97);
+}
+
+.btn-fav.add {
+  background-color: hsl(45, 90%, 55%);
+  color: #333;
+}
+
+.btn-fav.add:hover {
+  background-color: hsl(45, 90%, 48%);
+}
+
+.btn-fav.remove {
+  background-color: #ffe5e5;
+  color: #AA0000;
+}
+
+.btn-fav.remove:hover {
+  background-color: #ffd0d0;
+}
+
+.btn-fav.already {
+  background-color: #e2e8f0;
+  color: #718096;
+  cursor: default;
+}
+
+.btn-fav.already:active {
+  transform: none;
+}
+
+.event-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #edf2f7;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-item:last-child {
+  border-bottom: none;
+}
+
+.event-date {
+  font-size: 0.8rem;
+  color: #a0aec0;
+}
+
+.event-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.event-score {
+  background-color: #48bb78;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  #preferiti-lista .team-card-col:nth-child(3):last-child,
+  #search-results-list .team-card-col:nth-child(3):last-child {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
