@@ -124,10 +124,12 @@ body {
 .btn-fav.remove {
   background-color: #ffe5e5;
   color: #AA0000;
+  border: 1px solid #AA0000;
 }
 
 .btn-fav.remove:hover {
   background-color: #ffd0d0;
+  border: 1px solid #AA0000;
 }
 
 .btn-fav.already {
